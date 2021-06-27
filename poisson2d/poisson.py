@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Aug 31 15:57:01 2017
 
-@author: arc
-"""
-
-# -*- coding: utf-8 -*-
-"""
-
-"""
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime

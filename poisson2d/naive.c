@@ -59,11 +59,7 @@ void run(double toler, double a)
 
   memset(phip, 0, sizeof(phip[0][0])*M*M);
   memset(phi, 0, sizeof(phi[0][0])*M*M);
-  /*for (int i=1; i<M-1; i++)  {
-    for (int j=1; j<M-1; j++) {
-      rhoa[i][j] =  rho(i*a,j*a);
-    }
-  }*/
+  
   double delta = 1.0;
   a2 = pow(a,2.0);
   while (delta > toler) {
