@@ -26,4 +26,6 @@ For all of these results, the amount of iterations performed by the respective c
 the same, with the exception of the 100x100 grid C codes, which did nearly a double amount of iterations
 compared to the rest, for some reason.
 
-Some thoughts on the code at https://runningcrocodile.fi/articles/pythonperformance.html
+Some thoughts on the code at https://runningcrocodile.fi/articles/pythonperformance.html . Also, there was
+discussion about this problem at Discourse: https://fortran-lang.discourse.group/t/performance-c-vs-fortran/1461 
+with important contributions from numerous users (Mason, Beliavsky, septc, implicitall, nncarlson, han190 and pmk)
