@@ -25,7 +25,7 @@ contains
       !! To Do: give meaningful names to the magic numbers.
       !! See https://en.wikipedia.org/wiki/Magic_number_(programming)#Unnamed_numerical_constants.
       if (all([x,y]>0.6_dp .and. [x,y]<0.8_dp)) then
-        rho = 1.
+        rho = 1._dp
       else
         rho = merge(-1., 0., all([x,y]>0.2_dp .and. [x,y]<0.4_dp))
       end if
