@@ -39,7 +39,7 @@ program poisson
 
   integer i,j
   integer, parameter :: M=150
-  real(dp), parameter :: dx=0.01
+  real(dp), parameter :: dx=0.01_dp
   real(dp) :: t_start, rho_sampled(M,M)
   
   call cpu_time(t_start)
