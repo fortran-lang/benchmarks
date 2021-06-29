@@ -54,7 +54,7 @@ program poisson
       real(dp) :: delta_phi, t_end
       real(dp), parameter :: epsilon0=8.85E-12_dp, tolerance=1E-6_dp
       real(dp), dimension(M,M) :: phi_prime, phi
-      integer iteration
+      integer :: iteration
 
       phi = 0
 
