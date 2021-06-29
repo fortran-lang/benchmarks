@@ -19,7 +19,7 @@ end module
 program poisson
 use rhofunc, only: rho
 implicit none
-integer, parameter :: dp=kind(0.d0), M=300
+integer, parameter :: dp=kind(0.d0), M=150
 integer            :: i,j, iter
 real(dp),parameter :: epsilon0=8.85E-12_dp, target=1E-6_dp, a=0.01
 real(dp)           :: delta, b, e, phiprime(M,M), phi(M,M), a2, rhoarr(M,M)
