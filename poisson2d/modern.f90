@@ -27,7 +27,7 @@ contains
       if (all([x,y]>0.6_dp .and. [x,y]<0.8_dp)) then
         rho = 1._dp
       else
-        rho = merge(-1., 0., all([x,y]>0.2_dp .and. [x,y]<0.4_dp))
+        rho = merge(-1._dp, 0._dp, all([x,y]>0.2_dp .and. [x,y]<0.4_dp))
       end if
   end procedure
 end submodule
