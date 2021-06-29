@@ -65,10 +65,8 @@ program poisson
       iteration = 0
       do while (delta_phi > tolerance )
         iteration = iteration + 1
-        do concurrent(i=2:M-1, j=2:M-1) ! Compute updated solution estimate at internal points.
-          phi_prime(i,j) =   (phi(i+1,j) + phi(i-1,j) + phi(i,j+1) + phi(i,j-1))/4._dp &
-                           + (dx/2._dp)*(dy/2._dp)/epsilon0*rho_sampled(i,j)
-        end do
+        phi_prime(2:M-1,2:M-1) = (phi(3:,2:M-1) + phi(:M-2,2:M-1) + phi(2:M-1,3:) + phi(2:M-1,1:M-2))/4._dp &
+                               + (dx/2._dp)*(dy/2._dp)/epsilon0*rho_sampled(2:M-1,2:M-1)
         delta_phi = maxval(abs(phi_prime - phi))
         phi(2:M-1, 2:M-1) = phi_prime(2:M-1, 2:M-1) ! Update internal values.
       end do
