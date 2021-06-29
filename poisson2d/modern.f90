@@ -56,7 +56,7 @@ program poisson
       real(dp), dimension(M,M) :: phi_prime, phi
       integer iteration
 
-      phi = 0.
+      phi = 0
 
       phi_prime([1,M], 2:M-1) = phi([1,M], 2:M-1) ! Initialize only boundary values except corners. (Internal values will
       phi_prime(2:M-1, [1,M]) = phi(2:M-1, [1,M]) ! be overwritten in the first iteration. Corners will never be used.)
