@@ -15,17 +15,21 @@ The grid is a 2-dimensional array of size MxM. The timings for different values 
 
 | Language            | M=100           | M=200                 | M=300                  |
 |---------------------|-----------------|-----------------------|------------------------|
-| Python (pure)       | 276             | n/a                   | n/a                    |
-| Cython              | 1.02            | 32.8                  | 229                    |
-| Fortran (naive)     | 0.34            | 13.2                  | 69.7                   |
-| Fortran (optimized) | 0.18            | 6.25                  | 31.4                   |
-| C (naive)           | 0.42*           | 7.25                  | 33.7                   |
-| C (optimized)       | 0.37*           | 6.80                  | 32.8                   |
+| Python (pure)       | 198             | n/a                   | n/a                    |
+| Cython              |	0.46            | 5.77                  | 43.9                   |
+| Fortran (trad1)     | 0.23            | 3.59                  | 18.3                   |
+| Fortran (trad2)     | 0.19            | 4.29                  | 19.6                   |
+| C (naive)           | 0.18            | 2.46                  | 11.6                   |
+| C (optimized)       | 0.13            | 1.83                  | 8.26                   |
+| Fortran (modern)    | 0.19            | n/a                   | 8.08                   |
+| Python (vectorized) | 0.92            | 10.8                  | 65.7                   |
 
-* For all of these results, the amount of iterations performed by the respective codes was approximately
-the same, with the exception of the 100x100 grid C codes, which did nearly a double amount of iterations
-compared to the rest, for some reason. The timings are on AMD Ryzen 5 3600 @3.6GHz, using WSL2 on Windows 10.
+* For all of these results, the amount of iterations performed was exactly the same.
+ The timings are on AMD Ryzen 5 3600 @3.6GHz, using WSL2 on Windows 10.
 
 Some thoughts on the code at https://runningcrocodile.fi/articles/pythonperformance.html . Also, there was
 discussion about this problem at Discourse: https://fortran-lang.discourse.group/t/performance-c-vs-fortran/1461 
 with important contributions from numerous users (Mason, Beliavsky, septc, implicitall, nncarlson, han190 and pmk)
+
+Codes written by a running crocodile (traditional1.f90, traditional2.f90, naive.c, optimized.c, poisson.py, poissonvectorized.py, poisson.pyx)
+and Damian Rouson (modern.f90) with the aforementioned help from Discourse.

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import datetime
 
 
-M = 100      
+M = 300      
 a = 1/(M-1)
 target = 1e-8
 analytical_tol = 5.0e-3
@@ -14,7 +14,7 @@ analytical_tol = 5.0e-3
 # Create arrays to hold potential values
 phi = np.zeros([M,M],float)
 phiprime = np.zeros([M,M],float)
-
+roa = np.zeros([M,M],float)
 #Analytical solution to the problem
 sol = np.zeros([M,M],float)
 begin = datetime.datetime.now()
@@ -33,19 +33,21 @@ for i in range(M):
 def ro(x,y):
     return -(6*x*y*(1-y) - 2*x**3)
 
+for i in range(M):
+    for j in range(M):
+        roa[i,j] = ro(i*a,j*a)
 
 # Main loop
 delta = 1.0
+iterations = 0
 while delta>target:
 
     # Calculate new values of the potential
     a2 = a**2
-    for i in range(1,M-1):
-        for j in range(1,M-1):
-
-            phiprime[i,j] = (phi[i+1,j] + phi[i-1,j] \
-                             + phi[i,j+1] + phi[i,j-1])/4 \
-                    + a2*ro(i*a,j*a)/4																											
+    iterations += 1
+    phiprime[1:M-1,1:M-1] = (phi[2:M,1:M-1] + phi[0:M-2,1:M-1] \
+                     + phi[1:M-1,0:M-2] + phi[1:M-1,2:M])/4 \
+                    + a2*roa[1:M-1,1:M-1]/4																											
 
     # Calculate maximum difference from old values
     delta = np.max(abs(phi-phiprime))
@@ -59,4 +61,4 @@ phi = phi/maxphi
 assert np.sum(np.abs(sol-phi))/(M*M) < analytical_tol
 end = datetime.datetime.now()
 dif = end-begin
-print(dif.total_seconds())
+print(dif.total_seconds(),iterations)
