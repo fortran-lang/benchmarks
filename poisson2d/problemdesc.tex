@@ -1,0 +1,38 @@
+\title{Problem: 2D Poisson equation}
+
+\date{\today}
+
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\begin{document}
+\maketitle
+\section{Theory}
+Partial differential equations are a mainstay of physics, and as such, many methods have been developed for solving them numerically. The problem to be solved in this idiom is obtaining a numerical solution to Poisson's equation
+\begin{align}
+\nabla ^2 u(x,y) = v(x,y)
+\end{align}
+by the finite-difference Jacobi relaxation method, i.e. by making a grid with some grid cell area $h^2$ and iteratively solving
+
+\begin{align}
+u_{i+1}(x,y) = &\frac{1}{4h^2}\bigg( u_i(x+h,y) + u_i(x-h,y)\\
+ &+ u_i(x,y-h) + u_i(x,y+h) - 4u_i(x,y)\bigg) - \frac{h^2}{4}v(x,y)
+\end{align}
+until some desired convergence. In other words, each grid point is updated by considering it and its neighbours in the previous iteration as well as the source term.
+\section{Specifics}
+\begin{itemize}
+\item The grid must be a unit square, i.e. the sides are of length 1. The grid spacing $h$ is $1/(M-1)$, if the number of grid cells is $M^2$.
+\item You must use a handwritten version of the algorithm above. Other than that, anything goes.
+\item The source term is $v(x,y) = 6xy(1-y)-2x^3$
+\item The initial guess for $u(x,y)$ should be zero everywhere except the boundary condition at $x=1$.
+\item The boundary conditions are $u(0,y) = 0, u(1,y) = y(1-y), u(x,0) = 0, u(x,1) = 0$.
+\item The code is convergent when the maximum grid point absolute difference between two iterations is $10^{-8}$. In other words, in pseudocode, when max(abs(current-previous))$<1e-8$.
+\item The exercise is considered complete when the convergent numerical solution has been checked against the analytical solution $u(x,y) = y(1-y)x^3$ and found to be within acceptable bounds. This is done by considering the average error per grid point, which must be below $5\cdot 10^{-3}$. Remember that the solution is unique only up to an additive constant, so you should normalize so that the highest absolute value of your solution (as well as the analytical solution) is 1!
+
+\end{itemize}
+
+Following these instructions, run the code for M=100, 200, 300. Your code should converge in 16054, 53666 and 106405 iterations, respectively; if it doesn't, check that your algorithm and initial conditions are correct. 
+\section{Notes}
+Be sure to be careful with the boundary conditions and take some care to set the array for $v(x,y)$ correctly. It is easy to make off-by-one errors that make convergence to the analytical solution impossible.
+\end{document}
+This is never printed
