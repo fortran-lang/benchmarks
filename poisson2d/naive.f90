@@ -5,7 +5,7 @@ integer, parameter :: dp=kind(0.d0)
 contains
     pure real(dp) function rho(x,y)
         real(dp), intent(in) :: x,y
-        if (x > 0.6_dp .and. x < 0.8_dp .and. y > 0.6_dp .and. y<0.8) then
+        if (x > 0.6_dp .and. x < 0.8_dp .and. y > 0.6_dp .and. y<0.8_dp) then
             rho = 1.0_dp
         else if (x> 0.2_dp .and. x<0.4_dp .and. y>0.2_dp .and. y<0.4_dp) then
             rho = -1.0_dp
@@ -21,7 +21,7 @@ use rhofunc, only: rho
 implicit none
 integer, parameter :: dp=kind(0.d0), M=300
 integer            :: i,j, iter
-real(dp),parameter :: epsilon0=8.85E-12_dp, target=1E-6_dp, a=0.01
+real(dp),parameter :: epsilon0=8.85E-12_dp, target=1E-6_dp, a=0.01_dp
 real(dp)           :: delta, b, e, phiprime(M,M), phi(M,M), a2, rhoarr(M,M), temp(M,M)
 
 
